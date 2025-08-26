@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reloj Lima</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            font-family: Arial, sans-serif;
+        }
+        
+        #clock {
+            background-color: white;
+            color: black;
+            font-size: 40px;
+            font-weight: bold;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="clock">00:00:00</div>
+
+    <script>
+        // Función para actualizar el reloj con la hora de Lima, Perú (GMT-5)
+        function updateClock() {
+            const now = new Date();
+            
+            // Ajustar a la zona horaria de Lima, Perú (GMT-5)
+            const limaOffset = -5 * 60; // -5 horas en minutos
+            const localOffset = now.getTimezoneOffset(); // Offset local en minutos
+            const totalOffset = limaOffset + localOffset; // Diferencia total en minutos
+            
+            // Crear una nueva fecha ajustada a la hora de Lima
+            const limaTime = new Date(now.getTime() + totalOffset * 60 * 1000);
+            
+            // Formatear la hora como HH:MM:SS
+            const hours = limaTime.getHours().toString().padStart(2, '0');
+            const minutes = limaTime.getMinutes().toString().padStart(2, '0');
+            const seconds = limaTime.getSeconds().toString().padStart(2, '0');
+            
+            // Actualizar el elemento del reloj
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+        
+        // Actualizar el reloj inmediatamente y luego cada segundo
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>

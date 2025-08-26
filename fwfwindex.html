@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIU VIRTUAL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #4a4a4a;
+            color: white;
+        }
+        
+        .header {
+            background-color: #333;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .back-button {
+            color: white;
+            margin-right: 10px;
+            font-size: 20px;
+            text-decoration: none;
+        }
+        
+        .title {
+            font-weight: bold;
+        }
+        
+        .info-bar {
+            background-color: #000;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+        }
+        
+        .info-icon {
+            margin-right: 10px;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .clock-container {
+            background-color: white;
+            color: black;
+            font-size: 40px;
+            font-weight: bold;
+            padding: 20px 40px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+            min-width: 200px;
+        }
+        
+        .date {
+            margin-bottom: 30px;
+        }
+        
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .student-tag {
+            background-color: #eee;
+            color: #333;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .student-name {
+            color: #e63946;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .student-info {
+            text-align: center;
+            color: #aaa;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .location {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        .location-icon {
+            color: #e63946;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="#" class="back-button">&#10094;</a>
+        <div class="title">TIU VIRTUAL</div>
+    </div>
+    
+    <div class="info-bar">
+        <span class="info-icon">&#9432;</span>
+        <span>El TIU virtual Offline (sin conexión a internet) se guardará por un periodo de 1 día</span>
+    </div>
+    
+    <div class="container">
+        <div class="clock-container" id="clock">00:00:00</div>
+        <div class="date" id="date">Lunes, 25 Ago 2025</div>
+        
+        <div class="profile-pic">
+            <!-- La imagen se cargará desde la URL proporcionada -->
+        </div>
+        
+        <div class="student-tag">ESTUDIANTE GEA</div>
+        
+        <div class="student-name">ANDRÉ ALESSANDRO VELAZCO</div>
+        
+        <div class="student-info">
+            <div>Código de alumno:</div>
+            <div><strong>202318208</strong></div>
+            <div style="margin-top: 10px;">ID Banner:</div>
+            <div><strong>N04087062</strong></div>
+            <div style="margin-top: 10px;">Ingeniería Industrial</div>
+            <div class="location">
+                <span class="location-icon">&#128205;</span>
+                <span>Campus Monterrico</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para actualizar el reloj con la hora de Lima, Perú (GMT-5)
+        function updateClock() {
+            const now = new Date();
+            
+            // Ajustar a la zona horaria de Lima, Perú (GMT-5)
+            const limaOffset = -5 * 60; // -5 horas en minutos
+            const localOffset = now.getTimezoneOffset(); // Offset local en minutos
+            const totalOffset = limaOffset + localOffset; // Diferencia total en minutos
+            
+            // Crear una nueva fecha ajustada a la hora de Lima
+            const limaTime = new Date(now.getTime() + totalOffset * 60 * 1000);
+            
+            // Formatear la hora como HH:MM:SS
+            const hours = limaTime.getHours().toString().padStart(2, '0');
+            const minutes = limaTime.getMinutes().toString().padStart(2, '0');
+            const seconds = limaTime.getSeconds().toString().padStart(2, '0');
+            
+            // Actualizar el elemento del reloj
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+            
+            // Formatear la fecha
+            const options = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
+            let dateStr = limaTime.toLocaleDateString('es-PE', options);
+            
+            // Capitalizar la primera letra
+            dateStr = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
+            
+            // Actualizar el elemento de la fecha
+            document.getElementById('date').textContent = dateStr;
+        }
+        
+        // Actualizar el reloj inmediatamente y luego cada segundo
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
