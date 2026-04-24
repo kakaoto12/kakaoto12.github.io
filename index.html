@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIU VIRTUAL</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(79, 82, 89);
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* --- Contenedor Principal --- */
+        .app-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            /* Limitar el ancho para mantener el aspect ratio 453/804 sin salir de la pantalla */
+            max-width: calc(100vh * (453 / 804));
+            max-height: 100vh;
+            container-type: inline-size;
+            display: flex;
+            justify-content: center;
+            background-color: rgb(79, 82, 89);
+        }
+
+        /* --- Animación de Nubes --- */
+        .clouds-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            animation: moveClouds 5s linear infinite;
+            left: 100%;
+            /* Inicia en el borde derecho del contenedor */
+            opacity: 0.8;
+        }
+
+        .cloud img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .c1 {
+            width: 40px;
+            top: 45%;
+            animation-delay: -1s;
+        }
+
+        .c2 {
+            width: 40px;
+            top: 42%;
+            animation-delay: -2.08s;
+        }
+
+        .c3 {
+            width: 20px;
+            top: 51%;
+            animation-delay: -6.36s;
+        }
+
+        .c4 {
+            width: 40px;
+            top: 51.8%;
+            animation-delay: -5.05s;
+        }
+
+        .c5 {
+            width: 61px;
+            top: 47%;
+            animation-delay: -8.33s;
+        }
+
+        .c6 {
+            width: 50px;
+            top: 40%;
+            animation-delay: -9.81s;
+        }
+
+        @keyframes moveClouds {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(calc(-84.5cqi - 120px));
+                /* Se mueve exactamente el ancho del contenedor + el ancho de la nube, luego repite instantáneamente */
+            }
+        }
+
+        /* --- Recortes de la Captura Original --- */
+        /* Parte superior: Muestra solo el encabezado hasta el reloj */
+        .top-slice {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10.481%;
+            overflow: hidden;
+            z-index: 15;
+        }
+
+        .top-slice img {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* Parte inferior: Muestra desde la tarjeta blanca (y=440px) hacia abajo */
+        .bottom-slice {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 45.3%;
+            overflow: hidden;
+            z-index: 15;
+        }
+
+        .bottom-slice img {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        /* --- Foto de Perfil --- */
+        .profile-pic {
+            position: absolute;
+            top: 28.134%;
+            left: 32%;
+            width: 37%;
+            height: 20.847%;
+            border-radius: 50%;
+            overflow: hidden;
+            z-index: 15;
+        }
+
+        .profile-pic img {
+            position: absolute;
+            top: -137.954%;
+            left: -85.486%;
+            width: 270.27%;
+        }
+
+        /* --- Reloj en Vivo --- */
+        .clock-wrapper {
+            position: absolute;
+            top: 10.481%;
+            left: 21.566%;
+            width: 56.88%;
+            height: 8.93%;
+            z-index: 20;
+            background: rgb(255, 255, 255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 2.1cqi;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #clock {
+            font-family: "SansSerif", sans-serif;
+            font-weight: normal;
+            color: black;
+            font-size: 9.8cqi;
+            letter-spacing: 0px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* --- Fecha --- */
+        #live-date {
+            position: absolute;
+            top: 22.5%;
+            width: 100%;
+            text-align: center;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: white;
+            font-size: 4.23cqi;
+            letter-spacing: 0;
+            z-index: 18;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-wrapper">
+        <!-- Animación de Nubes en el fondo -->
+        <div class="clouds-container">
+            <div class="cloud c1"><img src="aaaaaaa.png"></div>
+            <div class="cloud c2"><img src="aaaaaaa.png"></div>
+            <div class="cloud c3"><img src="aaaaaaa.png"></div>
+            <div class="cloud c4"><img src="aaaaaaa.png"></div>
+            <div class="cloud c5"><img src="aaaaaaa.png"></div>
+            <div class="cloud c6"><img src="aaaaaaa.png"></div>
+        </div>
+
+        <!-- Recorte Superior (Header) -->
+        <div class="top-slice">
+            <img src="captura.png" alt="Header">
+        </div>
+
+        <!-- Recorte Inferior (Tarjeta Blanca) -->
+        <div class="bottom-slice">
+            <img src="captura.png" alt="Tarjeta">
+        </div>
+
+        <!-- Foto del señor recortada de la captura original -->
+        <div class="profile-pic">
+            <img src="captura.png" alt="Foto de perfil">
+        </div>
+
+        <!-- Reloj sobrepuesto -->
+        <div class="clock-wrapper">
+            <div id="clock">00:00:00</div>
+        </div>
+
+        <!-- Fecha en el hueco gris central -->
+        <div id="live-date"></div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+
+            const limaOffset = -5 * 60;
+            const localOffset = now.getTimezoneOffset();
+            const totalOffset = limaOffset + localOffset;
+
+            const limaTime = new Date(now.getTime() + totalOffset * 60 * 1000);
+
+            const hours = limaTime.getHours().toString().padStart(2, '0');
+            const minutes = limaTime.getMinutes().toString().padStart(2, '0');
+            const seconds = limaTime.getSeconds().toString().padStart(2, '0');
+
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+
+            const dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+            const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+
+            const diaSemana = dias[limaTime.getDay()];
+            const dia = limaTime.getDate();
+            const mes = meses[limaTime.getMonth()];
+            const anio = limaTime.getFullYear();
+
+            document.getElementById('live-date').textContent = `${diaSemana}, ${dia} ${mes} ${anio}`;
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+
+</html>
+
+</html>

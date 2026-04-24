@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar Imagen con Hora de Lima</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .imagen-container {
+            position: relative;
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .reloj-container {
+            position: absolute;
+            top: 10.5%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            color: black;
+            font-size: 40px;
+            font-weight: bold;
+            padding: 35px 30px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 10;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="imagen-container">
+        <img src="hola.jpeg" alt="Imagen">
+        <div class="reloj-container" id="reloj">00:00:00</div>
+    </div>
+
+    <script>
+        // Función para actualizar el reloj con la hora de Lima, Perú (GMT-5)
+        function actualizarReloj() {
+            // Crear objeto de fecha fija para Lima (11 de la mañana)
+            const ahora = new Date();
+            
+            // Obtener componentes de la hora actual
+            let horas = ahora.getHours();
+            const minutos = ahora.getMinutes().toString().padStart(2, '0');
+            const segundos = ahora.getSeconds().toString().padStart(2, '0');
+            
+            // Forzar la hora a 11 (manteniendo minutos y segundos actuales)
+            horas = 11;
+            
+            // Formatear la hora (HH:MM:SS)
+            const horasStr = horas.toString().padStart(2, '0');
+            
+            // Mostrar la hora formateada
+            document.getElementById('reloj').textContent = `${horasStr}:${minutos}:${segundos}`;
+        }
+
+        // Actualizar el reloj inmediatamente
+        actualizarReloj();
+        
+        // Actualizar el reloj cada segundo
+        setInterval(actualizarReloj, 1000);
+    </script>
+</body>
+</html>
